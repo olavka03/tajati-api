@@ -1,0 +1,1 @@
+export const KLICKTIPP_UTM_CAMPAIGN_KEY = 'field220462'

@@ -1,0 +1,6 @@
+export * from './api-error.interface'
+export * from './note-attribute.interface'
+export * from './customer-address.interface'
+export * from './customer.interface'
+export * from './metafield.interface'
+export * from './klicktipp-subscriber.interface'
