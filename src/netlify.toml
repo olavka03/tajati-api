@@ -1,3 +1,6 @@
+[build]
+  command = "yarn build"
+  publish = "dist"
+
 [build.environment]
-  NPM_FLAGS = "--include=dev"
   YARN_FLAGS = "--production=false"
