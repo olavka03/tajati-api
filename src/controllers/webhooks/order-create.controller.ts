@@ -10,7 +10,7 @@ export async function orderCreate(req: Request, res: Response) {
   const customerId = customer?.admin_graphql_api_id ?? null
 
   if (!customerId || !utmAttr) {
-    res.sendStatus(400)
+    return res.sendStatus(400)
   }
 
   const updatedCustomer = await updateCustomerMetafield(customerId, {
@@ -19,5 +19,5 @@ export async function orderCreate(req: Request, res: Response) {
     value: utmAttr?.value ?? '',
   })
 
-  res.json(updatedCustomer)
+  return res.json(updatedCustomer)
 }

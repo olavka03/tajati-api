@@ -129,7 +129,7 @@ class KlicktippService {
     }
 
     const klicktippSubscriber = await this.getSubscriberByEmail(customer.email)
-    const customerAddress = (customer.default_address ?? []).find((address) => address.default) ?? null
+    const customerAddress = customer?.default_address ?? null
 
     const fields = {
       fieldFirstName: customer.first_name ?? '',

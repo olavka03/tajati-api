@@ -15,5 +15,5 @@ export interface Customer {
   phone: string | null
   currency: string
   admin_graphql_api_id: string
-  default_address: CustomerAddress[]
+  default_address: CustomerAddress
 }
