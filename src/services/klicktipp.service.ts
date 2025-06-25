@@ -48,38 +48,48 @@ class KlicktippService {
   private async getSubscriberById(id: string) {
     const authHeaders = await this.getAuthHeaders()
 
-    const { data } = await klicktippClient.get<KlicktippSubscriber>(`/subscriber/${id}.json`, {
-      headers: {
-        ...authHeaders,
-      },
-    })
+    try {
+      const { data } = await klicktippClient.get<KlicktippSubscriber>(`/subscriber/${id}.json`, {
+        headers: {
+          ...authHeaders,
+        },
+      })
 
-    return data
+      return data
+    } catch (err) {
+      console.log('klicktipp getSubscriberById ERROR: ', err)
+      return null
+    }
   }
 
   private async getSubscriberByEmail(email: string) {
     const authHeaders = await this.getAuthHeaders()
 
-    const { data: subscriberIds } = await klicktippClient.post<string[]>(
-      '/subscriber/search.json',
-      {
-        email,
-      },
-      {
-        headers: {
-          ...authHeaders,
+    try {
+      const { data: subscriberIds } = await klicktippClient.post<string[]>(
+        '/subscriber/search.json',
+        {
+          email,
         },
-      },
-    )
+        {
+          headers: {
+            ...authHeaders,
+          },
+        },
+      )
 
-    const id = subscriberIds?.[0] ?? null
+      const id = subscriberIds?.[0] ?? null
 
-    if (!id) {
+      if (!id) {
+        return null
+      }
+
+      const subscriber = await this.getSubscriberById(id)
+      return subscriber
+    } catch (err) {
+      console.log('klicktipp getSubscriberByEmail ERROR:', err)
       return null
     }
-
-    const subscriber = await this.getSubscriberById(id)
-    return subscriber
   }
 
   private async createSubscriber(body: Record<string, string | Record<string, string>>) {
