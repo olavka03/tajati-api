@@ -1,7 +1,7 @@
 import { klicktippClient } from '@api'
 import { env } from '@config'
 import { Customer, KlicktippSubscriber } from '@types'
-import { KLICKTIPP_UTM_CAMPAIGN_KEY } from 'src/constants/klicktipp-utm-campaign-key.constant'
+import { KLICKTIPP_UTM_CAMPAIGN_KEY } from '@constants'
 import { match, P } from 'ts-pattern'
 
 class KlicktippService {
