@@ -15,7 +15,7 @@ export async function orderCreate(req: Request, res: Response) {
 
   const updatedCustomer = await updateCustomerMetafield(customerId, {
     namespace: 'klicktipp',
-    key: 'utm_campaign',
+    key: 'utm-campaign',
     value: utmAttr?.value ?? '',
   })
 
