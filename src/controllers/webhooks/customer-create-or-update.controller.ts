@@ -7,7 +7,7 @@ export async function customerCreateOrUpdate(req: Request, res: Response) {
 
   const customerMetafield = await getCustomerMetafield(customer.admin_graphql_api_id, {
     namespace: 'klicktipp',
-    key: 'utm_campaign',
+    key: 'utm-campaign',
   })
   console.log({ customerMetafield })
   console.log({ customer })
