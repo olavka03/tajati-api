@@ -9,6 +9,8 @@ export async function getCustomerEmail(id: string | null) {
   const getCustomerEmailQuery = gql`
     query GetCustomerMetafield($id: ID!) {
       customer(id: $id) {
+        id
+        email
         defaultEmailAddress {
           emailAddress
         }
@@ -22,11 +24,15 @@ export async function getCustomerEmail(id: string | null) {
 
   const { customer } = (await shopifyClient.request(getCustomerEmailQuery, variables)) as {
     customer: {
+      id: string
+      email: string
       defaultEmailAddress: {
         emailAddress: string
       }
     }
   }
+
+  console.log({ deleteCustomer: customer })
 
   return customer.defaultEmailAddress.emailAddress
 }
