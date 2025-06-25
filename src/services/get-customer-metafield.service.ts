@@ -7,7 +7,7 @@ export async function getCustomerMetafield(id: string | null, metafield: Omit<Me
     return
   }
 
-  const customerUpdateMutation = gql`
+  const getCustomerMetafieldQuery = gql`
     query GetCustomerMetafield($id: ID!, $namespace: String!, $key: String!) {
       customer(id: $id) {
         id
@@ -26,7 +26,7 @@ export async function getCustomerMetafield(id: string | null, metafield: Omit<Me
     key: metafield.key,
   }
 
-  const { customer } = (await shopifyClient.request(customerUpdateMutation, variables)) as {
+  const { customer } = (await shopifyClient.request(getCustomerMetafieldQuery, variables)) as {
     customer: {
       id: string
       metafield: {

@@ -123,6 +123,25 @@ class KlicktippService {
     return data
   }
 
+  public async removeSubscriber(email: string) {
+    try {
+      const authHeaders = await this.getAuthHeaders()
+      const subscriber = await this.getSubscriberByEmail(email)
+
+      if (!subscriber) {
+        return
+      }
+
+      await klicktippClient.delete(`/subscriber/${subscriber.id}`, {
+        headers: {
+          ...authHeaders,
+        },
+      })
+    } catch (err) {
+      console.log('removeSubscriber ERROR: ', err)
+    }
+  }
+
   public async syncCustomer(customer?: Customer | null, utmCampaign?: string | null) {
     if (!customer) {
       return
